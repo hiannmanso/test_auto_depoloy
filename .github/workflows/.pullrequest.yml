@@ -1,0 +1,17 @@
+name: Pull request
+on: [pull_request] #trigger
+jobs:
+  PullRequest:
+    runs-on: ubunto-latest
+    steps:
+      - name: Check out repository code
+        uses: action/checkout@v3
+      - name: Make a new env file
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          branch: "main"
+      - name: Run tests
+        run: docker-compose -f docker-compose-tests.yml run node_app npm run test
