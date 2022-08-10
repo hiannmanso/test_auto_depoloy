@@ -16,7 +16,7 @@ app.post("/students", async (req: Request, res: Response) => {
     skipDuplicates: true
   });
 
-  res.sendStatus(201); // caa
+  res.sendStatus(201); // caaaa
 });
 
 app.get("/students/random", async (req: Request, res: Response) => {
